@@ -27,7 +27,7 @@
 					</modules>
 					<archive>
 						<manifestEntries>
-							<Dependencies>deployment.org.jboss.examples.earproblem-common.jar</Dependencies>
+							<Dependencies>deployment.org.jboss.examples.earproblem-common.jar, org.jboss.as.naming</Dependencies>
 						</manifestEntries>
 					</archive>
 					<fileNameMapping>no-version</fileNameMapping>

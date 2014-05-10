@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.1" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="service2" targetNamespace="urn:org.jboss.examples.earproblem:service2:1.0">
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:1.1" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:1.1" xmlns:sy="urn:switchyard-config:switchyard:1.1" name="service2" targetNamespace="urn:org.jboss.examples.earproblem:service2:1.0"
+xmlns:rest="urn:switchyard-component-resteasy:config:1.1" xmlns:http="urn:switchyard-component-http:config:1.1" xmlns:jca="urn:switchyard-component-jca:config:1.1">
   <sca:composite name="service2" targetNamespace="urn:org.jboss.examples.earproblem:service2:1.0">
     <sca:component name="MessageLoggerBean">
       <bean:implementation.bean class="org.jboss.examples.earproblem.service2.service.impl.MessageLoggerBean"/>
@@ -8,12 +9,35 @@
       </sca:service>
     </sca:component>
     <sca:service name="MessageLoggerPortType" promote="MessageLoggerBean/MessageLogger">
-      <sca:interface.wsdl interface="META-INF/MessageLogger.wsdl#wsdl.porttype(MessageLoggerPortType)"/>
+      <!----><sca:interface.wsdl interface="META-INF/MessageLogger.wsdl#wsdl.porttype(MessageLoggerPortType)"/>
       <soap:binding.soap name="soap1">
         <soap:wsdl>META-INF/MessageLogger.wsdl</soap:wsdl>
         <soap:wsdlPort>MessageLoggerPort</soap:wsdlPort>
         <soap:contextPath>/logger</soap:contextPath>
       </soap:binding.soap>
+      <!--<rest:binding.rest>
+        <rest:interfaces>org.jboss.examples.earproblem.service2.service.impl.MessageLoggerResource</rest:interfaces>
+        <rest:contextPath>logger</rest:contextPath>
+      </rest:binding.rest>-->
+      <!--<http:binding.http>
+        <sy:operationSelector operationName="logMesssage"/>
+        <http:contextPath>logger</http:contextPath>
+      </http:binding.http>-->
+      <!--<sca:binding.sca/>-->
+        <!--<jca:binding.jca>
+            <jca:inboundConnection>
+                <jca:resourceAdapter name="hornetq-ra.rar"/>
+                <jca:activationSpec>
+                    <jca:property name="destinationType" value="javax.jms.Queue"/>
+                    <jca:property name="destination" value="MessageLoggerQueue"/>
+                </jca:activationSpec>
+            </jca:inboundConnection>
+            <jca:inboundInteraction>
+                <jca:listener>javax.jms.MessageListener</jca:listener>
+                <jca:endpoint type="org.switchyard.component.jca.endpoint.JMSEndpoint"/>
+                <jca:transacted>true</jca:transacted>
+            </jca:inboundInteraction>
+        </jca:binding.jca>-->
     </sca:service>
     <sca:service name="MessageLogger" promote="MessageLoggerBean/MessageLogger">
       <sca:interface.java interface="org.jboss.examples.earproblem.service2.service.MessageLogger"/>

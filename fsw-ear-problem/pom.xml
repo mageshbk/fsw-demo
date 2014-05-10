@@ -10,8 +10,8 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<switchyard.version>1.1.1-p5-redhat-1</switchyard.version>
-		<jbossas.version>7.2.1.Final-redhat-10</jbossas.version>
+		<switchyard.version>1.1.0.Final</switchyard.version>
+		<jbossas.version>7.2.0.Final</jbossas.version>
 	</properties>
 
 	<modules>
@@ -19,6 +19,60 @@
 		<module>service1</module>
 		<module>service2</module>
 	</modules>
+    <repositories>
+        <repository>
+            <id>jboss-enterprise-repository-group</id>
+            <name>JBoss Enterprise Maven Repository Group</name>
+            <url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Maven Repository Group</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>codehaus.m2.snapshots</id>
+            <url>http://snapshots.repository.codehaus.org</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fusesource-public-release-repository-group</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -29,7 +83,7 @@
 				<scope>import</scope>
 				<optional>false</optional>
 			</dependency>
-			<dependency>
+			<!----><dependency>
 				<groupId>org.jboss.as</groupId>
 				<artifactId>jboss-as-parent</artifactId>
 				<version>${jbossas.version}</version>

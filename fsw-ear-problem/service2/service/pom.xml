@@ -54,6 +54,34 @@
       <groupId>org.switchyard.components</groupId>
       <artifactId>switchyard-component-soap</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-resteasy</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-jca</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.switchyard.components</groupId>
+        <artifactId>switchyard-component-test-mixin-hornetq</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.jboss.as</groupId>
+        <artifactId>jboss-as-naming</artifactId>
+        <version>7.2.0.Final</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.as</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -67,6 +95,15 @@
           <fileNameMapping>no-version</fileNameMapping>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+            <!--<mainClass>org.jboss.examples.earproblem.service2.SCAServiceClient</mainClass>-->
+            <mainClass>org.jboss.examples.earproblem.service2.HornetQClient</mainClass>
+            <classpathScope>test</classpathScope>
+        </configuration>
+     </plugin>
     </plugins>
   </build>
 </project>
